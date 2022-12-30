@@ -28,3 +28,21 @@ export const uploadFile = async ({ name, desc, subjects, file }) => {
     throw new Error(error.message);
   }
 };
+
+export const deleteFile = async (id) => {
+  try {
+    const { data } = await instance.delete(`/file/deleteFile/${id}`);
+    return data;
+  } catch (error) {
+    throw new Error(error.message);
+  }
+};
+
+export const getAllFileOfUser = async () => {
+  try {
+    const { data } = await instance.get(`/file/getAllfile`);
+    return data;
+  } catch (error) {
+    throw new Error(error.message);
+  }
+};

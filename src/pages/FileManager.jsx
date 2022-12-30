@@ -1,32 +1,24 @@
 import { Button } from "antd";
-import React, { useState } from "react";
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
-import { deleteFile } from "../axios/file";
+import React, { useEffect, useState } from "react";
+import { deleteFile, getAllFileOfUser } from "../axios/file";
 import { showConfirmError, showConfirmModal } from "../error/showModalError";
-import { getAllFileRedux } from "../features/file/fileActions";
 import DashBoard from "./DashBoarsh";
 
-const FileList = () => {
-  const {
-    data: { files },
-    isloading,
-    error,
-  } = useSelector((state) => state.file);
-
-  const dispatch = useDispatch();
+const FileManager = () => {
+  const [files, setFiles] = useState([]);
 
   useEffect(() => {
-    dispatch(getAllFileRedux({ pageIndex: 1 }));
-  }, [dispatch]);
+    getAllFileOfUser()
+      .then((res) => {
+        setFiles(res);
+      })
+      .catch((e) => showConfirmError(e.message));
+  }, []);
 
   const handleDelete = (id) => {
     deleteFile(id)
       .then((res) => {
-        showConfirmModal("delete document suceess", () => {
-          dispatch(getAllFileRedux({ pageIndex: 1 }));
-        });
+        showConfirmModal("delete document suceess", () => {});
       })
       .catch((e) => {
         showConfirmError(e.message);
@@ -92,4 +84,4 @@ const FileList = () => {
   );
 };
 
-export default FileList;
+export default FileManager;

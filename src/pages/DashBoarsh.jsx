@@ -1,20 +1,14 @@
-import {
-  LinkOutlined,
-  MenuFoldOutlined,
-  MenuUnfoldOutlined,
-} from "@ant-design/icons";
+import { LinkOutlined } from "@ant-design/icons";
 import { Layout, Menu } from "antd";
-import React, { useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 const { Header, Sider, Content } = Layout;
 const DashBoard = ({ children }) => {
-  const [collapsed, setCollapsed] = useState(false);
   return (
     <Layout>
       <Sider
         trigger={null}
         collapsible
-        collapsed={collapsed}
         style={{ height: "100vh" }}
         theme="light"
       >
@@ -29,27 +23,9 @@ const DashBoard = ({ children }) => {
         >
           Share File
         </div>
-        <Menu
-          theme="light"
-          mode="inline"
-          defaultSelectedKeys={["1"]}
-          items={items}
-        />
+        <Menu items={items} />
       </Sider>
       <Layout className="site-layout">
-        <Header
-          style={{
-            padding: 0,
-          }}
-        >
-          {React.createElement(
-            collapsed ? MenuUnfoldOutlined : MenuFoldOutlined,
-            {
-              className: "trigger",
-              onClick: () => setCollapsed(!collapsed),
-            }
-          )}
-        </Header>
         <Content
           style={{
             margin: "24px 16px",
@@ -74,6 +50,25 @@ function getItem(label, key, icon, children) {
 }
 
 const items = [
-  getItem(<Link to={"/dashboard/files"}>Files</Link>, "link", <LinkOutlined />),
+  getItem(
+    <Link to={"/dashboard/files"}>CreateFile</Link>,
+    "file",
+    <LinkOutlined />
+  ),
+  getItem(
+    <Link to={"/dashboard/fileList"}>Files</Link>,
+    "filesList",
+    <LinkOutlined />
+  ),
+  getItem(
+    <Link to={"/dashboard/filemanager"}>Files Manager</Link>,
+    "filemanager",
+    <LinkOutlined />
+  ),
+  getItem(
+    <Link to={"/dashboard/usermanager"}>User Manager</Link>,
+    "usermanager",
+    <LinkOutlined />
+  ),
 ];
 export default DashBoard;

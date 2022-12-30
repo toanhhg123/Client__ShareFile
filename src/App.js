@@ -8,6 +8,8 @@ import FileDashBoard from "./pages/FileDashBoard";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import FileList from "./pages/FileList";
+import FileManager from "./pages/FileManager";
+import UserManager from "./pages/UserManager";
 
 const App = () => {
   return (
@@ -21,6 +23,8 @@ const App = () => {
       <Route path="/login" element={<Login />}></Route>
       <Route path="/register" element={<Register />}></Route>
       <Route path="/dashboard/fileList" element={<FileList />}></Route>
+      <Route path="/dashboard/fileManager" element={<FileManager />}></Route>
+      <Route path="/dashboard/usermanager" element={<UserManager />}></Route>
     </Routes>
   );
 };

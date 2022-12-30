@@ -3,8 +3,8 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import FileCard from "../components/home/FileCard";
 import FileCardMini from "../components/home/FileCardMini";
-import Layout from "../layout/Layout";
 import { getAllFileRedux } from "../features/file/fileActions";
+import Layout from "../layout/Layout";
 import { showConfirmError } from "../error/showModalError";
 
 const Home = () => {
@@ -14,8 +14,6 @@ const Home = () => {
     isloading,
     error,
   } = useSelector((state) => state.file);
-
-  console.log(files);
 
   useEffect(() => {
     dispatch(getAllFileRedux({ pageIndex: 1 }));

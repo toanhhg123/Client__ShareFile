@@ -14,7 +14,6 @@ export const getAllFileRedux = createAsyncThunk(
       dispatch(sendRequest());
       const response = await getAllFile(params);
       dispatch(resetState());
-      console.log(response);
       dispatch(requesSuccess(response));
     } catch (error) {
       dispatch(faildRequest(error.message));

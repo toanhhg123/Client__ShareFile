@@ -1,11 +1,13 @@
 import { createSlice } from "@reduxjs/toolkit";
 import AuthStore from "../../LocalStore/authStore";
 
+const auth = AuthStore.getItem();
+
 const initialState = {
   isloading: false,
-  islogin: false,
+  islogin: auth && auth.accessToken ? true : false,
   error: "",
-  data: {},
+  data: auth,
 };
 
 export const authSlice = createSlice({
